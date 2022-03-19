@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Candidates from '../../pages/Candidates/Candidate';
+import Party from "../../pages/Parties/Party";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,22 +44,25 @@ export default function MultiTabs() {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} >
           <Tab label="Parties"  />
+          <Tab label="Canditates"  />
           <Tab label="Info" />
           <Tab label="Control Panel"  />
-          <Tab label="Candidates"  />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {/* <Candidate/> */}Item 1
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
+        <Party/>
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <Candidates/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={4}>
         Item Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Candidates/>
+        
       </TabPanel>
     </Box>
   );
