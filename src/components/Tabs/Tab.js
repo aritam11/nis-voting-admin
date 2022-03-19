@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Candidates from '../../pages/Candidates/Candidate';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,9 +42,10 @@ export default function MultiTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} >
-          <Tab label="Canditates"  />
+          <Tab label="Parties"  />
           <Tab label="Info" />
           <Tab label="Control Panel"  />
+          <Tab label="Candidates"  />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -54,6 +56,9 @@ export default function MultiTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Candidates/>
       </TabPanel>
     </Box>
   );
