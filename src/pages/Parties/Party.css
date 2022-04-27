@@ -1,0 +1,16 @@
+img{
+    height: 120px;
+    margin:20px;
+    width: auto;
+}
+
+.partyoption{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+#partyCont{
+    display: flex;
+    gap:32px;
+}
