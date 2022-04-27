@@ -25,8 +25,8 @@ export default function BasicTable({rows}) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{row.name}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.party}</TableCell>
+              <TableCell align="right">{row.cons}</TableCell>
             </TableRow>
           ))}
         </TableBody>

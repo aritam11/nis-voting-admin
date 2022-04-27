@@ -32,7 +32,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function MultiTabs({parties,reld}) {
+export default function MultiTabs({parties,reld,cands}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -45,22 +45,18 @@ export default function MultiTabs({parties,reld}) {
         <Tabs value={value} onChange={handleChange} >
           <Tab label="Parties"  />
           <Tab label="Canditates"  />
-          <Tab label="Info" />
-          <Tab label="Control Panel"  />
+          {/* <Tab label="Info" /> */}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <Party parties={parties} reld={reld}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Candidates parties={parties} reld={reld}/>
+        <Candidates parties={parties} reld={reld} cands={cands}/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
         Item Two
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Three
-      </TabPanel>
+      </TabPanel> */}
     </Box>
   );
 }

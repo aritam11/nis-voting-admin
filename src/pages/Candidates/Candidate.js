@@ -11,7 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
 
-const BasicModal = ({parties})=> {
+const BasicModal = ({parties,reld})=> {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -50,13 +50,13 @@ const BasicModal = ({parties})=> {
 
 
     const postAddCand = () =>{
-      // reld()
+      reld()
       let postBody = {
         name:name,
         cons:cons,
         party:party
       }
-      setParty = ""
+      setParty("")
       let url = "http://localhost:8080/addcandidate"
       fetch(url,{
         method:"POST",
@@ -69,6 +69,10 @@ const BasicModal = ({parties})=> {
       .then(response => response.json())
       .then(data=>{
         console.log(data["message"])
+        if(data["message"]==="success"){
+          window.alert("candidate added");
+          handleClose();
+        }
       })
       .catch(err =>{
         window.alert("There was an issue")
@@ -95,7 +99,7 @@ const BasicModal = ({parties})=> {
           </Typography>
           <TextField onChange={nameChange} id="outlined-basic" label="Name" variant="outlined" fullWidth margin="normal"/>
           <TextField onChange={consChange} id="outlined-basic" label="Constituency" variant="outlined" fullWidth margin="normal"/>
-          <TextField onChange={partyChange} id="outlined-basic" label="Party" variant="outlined" fullWidth margin="normal"/>
+          {/* <TextField onChange={partyChange} id="outlined-basic" label="Party" variant="outlined" fullWidth margin="normal"/> */}
           <FormControl fullWidth margin="normal">
           <InputLabel id="demo-simple-select-label">Party</InputLabel>
           <Select
@@ -126,24 +130,20 @@ const BasicModal = ({parties})=> {
 
 
 
-function Candidates({parties,reld}) {
+function Candidates({parties,reld,cands}) {
 
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
+    function createData(name, party, cons) {
+        return { name, party, cons };
     }
 
-    let rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ];
+    let rows = cands.map(cand=>{
+      return createData(cand.name,cand.party,cand.cons)
+    })
       
   return (
     <div>
         <BasicTable rows={rows} />
-        <BasicModal parties={parties}/>
+        <BasicModal parties={parties} reld={reld}/>
         {/* <Voteoption/> */}
     </div>
   )

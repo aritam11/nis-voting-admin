@@ -60,12 +60,12 @@ app.post('/addcandidate',(req,res)=>{
     console.log(req.body)
     const cand = new Candidates({name:req.body.name,cons:req.body.cons,party:req.body.party})
     cand.save()
-    res.send({"message":"cool beans - add cand"})
+    res.send({"message":"success"})
 })
 
 
 app.get('/getcandidates',async (req,res)=>{
-    prts = await Candidates.find();
-    console.log(prts)
-    res.json(prts)
+    cands = await Candidates.find();
+    console.log(cands)
+    res.json(cands)
 })
